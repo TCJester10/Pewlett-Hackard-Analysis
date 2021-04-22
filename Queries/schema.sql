@@ -50,3 +50,5 @@ CREATE TABLE Titles (
 	to_date DATE,
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no)
 );
+
+--DROP TABLE employees CASCADE;
