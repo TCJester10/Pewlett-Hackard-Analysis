@@ -76,3 +76,16 @@ FROM current_emp as ce
 LEFT JOIN dept_emp as de
 ON ce.emp_no = de.emp_no
 GROUP BY de.dept_no;
+
+SELECT e.emp_no,
+     e.first_name,
+     e.last_name,
+     T.title
+     T.from_date
+     T.to_date
+INTO Title of Retiring Employees 
+From employees as e
+Inner JOIN Titles as T
+On e.emp_no
+
+          From employees as e
