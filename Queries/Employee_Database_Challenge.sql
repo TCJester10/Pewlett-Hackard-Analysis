@@ -37,3 +37,23 @@ INTO Retiring_Titles
 from DRetiringTitle as DRT
 GROUP BY DRT.title 
 ORDER BY count DESC;
+
+--Creating Mentorship eligiblilty chart
+Select Distinct ON(emp_no)e.emp_no,
+       e.first_name,
+       e.last_name,
+       e.birth_date,
+       de.from_date,
+       de.to_date,
+	   ti.title
+       Into Mentorship_eligible
+       From employees as e
+       Inner JOIN dept_emp as de
+       on e.emp_no = de.emp_no
+	   Inner JOIN titles as ti
+	   ON e.emp_no = ti.emp_no
+	   WHERE e.birth_date BETWEEN '1965-01-01' AND '1965-12-31'
+	       AND (de.to_date = '9999-01-01')
+	   Order BY e.emp_no 
+        ;
+     
