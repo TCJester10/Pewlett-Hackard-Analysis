@@ -56,4 +56,33 @@ Select Distinct ON(emp_no)e.emp_no,
 	       AND (de.to_date = '9999-01-01')
 	   Order BY e.emp_no 
         ;
+
+--Create Mentor title Tables
+Select COUNT(MRT.emp_no), 
+		MRT.title 
+INTO Mentor_Retiring_Titles
+from mentorship_eligible as MRT
+GROUP BY MRT.title 
+ORDER BY count DESC;
+	       
+Select * from Mentor_Retiring_Titles
+
+
+--Creating Expanded Mentorship eligiblilty chart
+Select Distinct ON(emp_no)e.emp_no,
+       e.first_name,
+       e.last_name,
+       e.birth_date,
+       de.from_date,
+       de.to_date,
+	   ti.title
+       Into E_Mentorship_eligible
+       From employees as e
+       Inner JOIN dept_emp as de
+       on e.emp_no = de.emp_no
+	   Inner JOIN titles as ti
+	   ON e.emp_no = ti.emp_no
+	   WHERE e.birth_date BETWEEN '1962-01-01' AND '1965-12-31'
+	       AND (de.to_date = '9999-01-01')
+	   Order BY e.emp_no ;
      
